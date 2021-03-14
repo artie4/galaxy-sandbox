@@ -1,0 +1,29 @@
+server:
+  port: 8682
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,env,beans,heapdump,threaddump"
+  health:
+    redis:
+      enabled: false
+
+spring:
+  application:
+    name: event-consumer
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8769/eureka/}
+    healthcheck:
+      enabled: true
+
+kafka:
+  consumer:
+    kafkaServer: localhost:9092
+    kafkaGroupId: galaxy-sandbox

@@ -1,0 +1,6 @@
+## docker image build
+docker build -t galaxy-sandbox/eureka-server: .
+
+##
+docker run --name galaxy-sandbox_eureka-server -p 8769:8769 galaxy-sandbox/eureka-server
+

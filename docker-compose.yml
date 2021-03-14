@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+    discovery:
+      image: galaxy-sandbox/eureka-server:latest
+      restart: on-failure
+      ports:
+        - "8769:8769"
+      volumes:
+        - /tmp
+      mem_limit: 320m
+      mem_reservation: 64m
+      environment:
+        - JAVA_OPTS=
+            -Xms256m
+            -Xmx256m
+    event-consumer:
+      depends_on:
+        - discovery
+      image: galaxy-sandbox/event-consumer:latest
+      restart: on-failure
+      ports:
+        - "8682:8682"
+      mem_limit: 380m
+      mem_reservation: 64m
+      environment:
+        - JAVA_OPTS=
+          -Xms256m
+          -Xmx320m
+        - EUREKA_SERVER=http://discovery:8769/eureka
+    event-generator:
+      depends_on:
+        - discovery
+      image: galaxy-sandbox/event-generator:latest
+      restart: on-failure
+      ports:
+        - "8681:8681"
+      mem_limit: 380m
+      mem_reservation: 64m
+      environment:
+        - JAVA_OPTS=
+          -Xms256m
+          -Xmx320m
+        - EUREKA_SERVER=http://discovery:8769/eureka

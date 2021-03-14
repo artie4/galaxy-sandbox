@@ -1,0 +1,33 @@
+server:
+  port: 8681
+
+management:
+  health:
+    redis:
+      enabled: false
+
+spring:
+  application:
+    name: event-generator
+  mvc:
+    log-request-details: true
+logging:
+  level:
+    reactor:
+      netty:
+        http:
+          client: TRACE
+    org:
+      springframework:
+        web:
+          reactive:
+            function:
+              client: TRACE
+
+eureka:
+  client:
+    enabled: false
+
+generator:
+  event-number: 10
+  delay-in-ms: 100

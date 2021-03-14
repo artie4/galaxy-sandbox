@@ -1,0 +1,20 @@
+server:
+  port: 8682
+
+management:
+  health:
+    redis:
+      enabled: false
+
+spring:
+  application:
+    name: event-consumer
+
+eureka:
+  client:
+    enabled: false
+
+kafka:
+  consumer:
+    kafkaServer: somehost
+    kafkaGroupId: anygroup
