@@ -20,15 +20,12 @@ class WebConfig {
                 .baseUrl(EVENT_CONSUMER_URL)
                 .wiretap(true)
 
-        val client =
-            WebClient.builder()
-                .baseUrl(eventConsumerUrl)
-                .defaultCookie("cookieKey", "cookieValue")
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .clientConnector(ReactorClientHttpConnector(httpClient))
-                .build()
-
-        return client
+        return WebClient.builder()
+            .baseUrl(EVENT_CONSUMER_URL)
+            .defaultCookie("cookieKey", "cookieValue")
+            .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .clientConnector(ReactorClientHttpConnector(httpClient))
+            .build()
     }
 
     companion object {

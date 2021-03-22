@@ -54,11 +54,11 @@ class KafkaConsumerConfig(val consumerProperties: KafkaConsumerProperties) {
     @Profile("!test")
     @Bean
     fun consumerConfigs(): Map<String, Any?> =
-        mutableMapOf<String, Any?>.apply {
-            props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = consumerProperties.kafkaServer
-            props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = LongDeserializer::class.java
-            props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
-            props[ConsumerConfig.GROUP_ID_CONFIG] = consumerProperties.kafkaGroupId
-            props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = true
+        mutableMapOf<String, Any?>().apply {
+            this[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = consumerProperties.kafkaServer
+            this[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = LongDeserializer::class.java
+            this[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+            this[ConsumerConfig.GROUP_ID_CONFIG] = consumerProperties.kafkaGroupId
+            this[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = true
         }
 }

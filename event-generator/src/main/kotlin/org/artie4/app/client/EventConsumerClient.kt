@@ -45,6 +45,4 @@ class EventConsumerClient(
             Mono.empty()
         }
     }
-
-
 }
