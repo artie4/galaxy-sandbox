@@ -5,4 +5,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
 @ConfigurationProperties("generator")
-data class GeneratorProperties(val eventNumber: Long, val delayInMs: Long)
+data class GeneratorProperties(
+    val eventNumber: Long,
+    val delayInMs: Long
+)

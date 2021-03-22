@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration
 class LoggerConfig {
 
     @Bean
-    fun logger(): Logger {
-        return LoggerFactory.getLogger(LoggerConfig::class.java.name)
-    }
+    fun logger(): Logger =
+        LoggerFactory.getLogger(LoggerConfig::class.java.name)
 }

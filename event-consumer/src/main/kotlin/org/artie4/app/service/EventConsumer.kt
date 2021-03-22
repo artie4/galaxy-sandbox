@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service
 private val logger = KotlinLogging.logger { }
 
 @Service
-class EventConsumer(val objectMapper: ObjectMapper) {
+class EventConsumer(
+    val objectMapper: ObjectMapper
+) {
 
     @KafkaListener(topics = ["orders"], containerFactory = "singleFactory")
     fun consume(order: Order) {
