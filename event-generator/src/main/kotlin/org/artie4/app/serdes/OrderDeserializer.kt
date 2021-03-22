@@ -9,14 +9,12 @@ import org.springframework.stereotype.Component
 @Component
 class OrderDeserializer : Deserializer<Order> {
 
-    override fun deserialize(topic: String?, data: ByteArray?): Order? {
-        var retVal: Order? = null
+    override fun deserialize(topic: String?, data: ByteArray?): Order? =
         try {
             val objectMapper = ObjectMapper().registerKotlinModule()
-            retVal = objectMapper.readValue(data, Order::class.java)
+            objectMapper.readValue(data, Order::class.java)
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
-        return retVal
-    }
 }

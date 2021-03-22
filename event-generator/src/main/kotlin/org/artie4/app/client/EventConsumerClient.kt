@@ -10,7 +10,9 @@ import java.util.logging.Logger
 import javax.annotation.PostConstruct
 
 @Service
-class EventConsumerClient constructor(private val webClient: WebClient) {
+class EventConsumerClient(
+    private val webClient: WebClient
+) {
 
     private val logger: Logger = Logger.getLogger(EventConsumerClient::class.simpleName)
 

@@ -60,7 +60,5 @@ class EventGenerator constructor(
         return productArr[idx]
     }
 
-    private fun randomAmount(): Int {
-        return ThreadLocalRandom.current().nextInt(10, 501)
-    }
+    private fun randomAmount(): Int = ThreadLocalRandom.current().nextInt(10, 501)
 }

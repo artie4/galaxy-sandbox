@@ -33,39 +33,32 @@ class KafkaConsumerConfig(val consumerProperties: KafkaConsumerProperties) {
     }
 
     @Bean
-    fun singleFactory(consumerFactory: ConsumerFactory<Long, Order>): KafkaListenerContainerFactory<*> {
-        val factory: ConcurrentKafkaListenerContainerFactory<Long, Order> =
-            ConcurrentKafkaListenerContainerFactory<Long, Order>()
-        factory.consumerFactory = consumerFactory
-        factory.isBatchListener = false
-        factory.setMessageConverter(StringJsonMessageConverter())
-        return factory
-    }
+    fun singleFactory(consumerFactory: ConsumerFactory<Long, Order>): KafkaListenerContainerFactory<*> =
+        ConcurrentKafkaListenerContainerFactory<Long, Order>().apply {
+            this.consumerFactory = consumerFactory
+            isBatchListener = false
+            setMessageConverter(StringJsonMessageConverter())
+        }
 
     @Bean
-    fun consumerFactory(consumerConfigs: Map<String, Any?>): ConsumerFactory<Long, Order> {
-        return DefaultKafkaConsumerFactory(consumerConfigs)
-    }
+    fun consumerFactory(consumerConfigs: Map<String, Any?>): ConsumerFactory<Long, Order> =
+        DefaultKafkaConsumerFactory(consumerConfigs)
 
     @Bean
-    fun kafkaListenerContainerFactory(): KafkaListenerContainerFactory<*> {
-        return ConcurrentKafkaListenerContainerFactory<Any, Any>()
-    }
+    fun kafkaListenerContainerFactory(): KafkaListenerContainerFactory<*> =
+        ConcurrentKafkaListenerContainerFactory<Any, Any>()
 
     @Bean
-    fun converter(): StringJsonMessageConverter {
-        return StringJsonMessageConverter()
-    }
+    fun converter(): StringJsonMessageConverter = StringJsonMessageConverter()
 
     @Profile("!test")
     @Bean
-    fun consumerConfigs(): Map<String, Any?> {
-        val props: MutableMap<String, Any?> = HashMap()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = consumerProperties.kafkaServer
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = LongDeserializer::class.java
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
-        props[ConsumerConfig.GROUP_ID_CONFIG] = consumerProperties.kafkaGroupId
-        props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = true
-        return props
-    }
+    fun consumerConfigs(): Map<String, Any?> =
+        mutableMapOf<String, Any?>.apply {
+            props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = consumerProperties.kafkaServer
+            props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = LongDeserializer::class.java
+            props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+            props[ConsumerConfig.GROUP_ID_CONFIG] = consumerProperties.kafkaGroupId
+            props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = true
+        }
 }

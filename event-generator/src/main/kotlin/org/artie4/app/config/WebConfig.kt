@@ -14,17 +14,25 @@ class WebConfig {
     @Bean
     fun getWebClient(): WebClient {
 
-        val eventConsumerUrl = "http://localhost:8682"
+        val httpClient =
+            HttpClient
+                .create()
+                .baseUrl(EVENT_CONSUMER_URL)
+                .wiretap(true)
 
-        val httpClient = HttpClient.create().baseUrl(eventConsumerUrl).wiretap(true)
-
-        val client = WebClient.builder()
-            .baseUrl(eventConsumerUrl)
-            .defaultCookie("cookieKey", "cookieValue")
-            .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-            .clientConnector(ReactorClientHttpConnector(httpClient))
-            .build()
+        val client =
+            WebClient.builder()
+                .baseUrl(eventConsumerUrl)
+                .defaultCookie("cookieKey", "cookieValue")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .clientConnector(ReactorClientHttpConnector(httpClient))
+                .build()
 
         return client
+    }
+
+    companion object {
+
+        private const val EVENT_CONSUMER_URL = "http://localhost:8682"
     }
 }
