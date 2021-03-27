@@ -21,7 +21,7 @@ class KafkaConfig {
 
     fun producerProps(): Map<String, Any> {
         val props = mutableMapOf<String, Any>()
-        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
+        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "127.0.0.1:9092"
         props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = LongSerializer::class.java
         props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = OrderSerializer::class.java
         props[ProducerConfig.LINGER_MS_CONFIG] = 10
