@@ -13,7 +13,7 @@ management:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: 127.0.0.1
   client:
     enabled: true
     registerWithEureka: false
