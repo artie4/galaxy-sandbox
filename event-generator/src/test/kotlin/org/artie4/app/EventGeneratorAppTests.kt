@@ -7,6 +7,7 @@ import org.artie4.app.model.Products
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -28,18 +29,21 @@ class EventGeneratorAppTests {
     @MockBean
     lateinit var eventConsumerClient: EventConsumerClient
 
+    @MockBean
+    lateinit var rabbitTemplate: RabbitTemplate
+
     @Test
     fun consumeMessage_Successful() {
 
         val createConsumer = defaultKafkaConsumerFactory.createConsumer()
+            .apply { subscribe(listOf("orders")) }
 
-        createConsumer.subscribe(listOf("orders"))
         val consumerRecords = createConsumer.poll(Duration.ofSeconds(1))
 
         assertEquals(10, consumerRecords.count())
         consumerRecords.forEach {
             Assertions.assertThat(it)
-                .matches { it.value().productType in Products.values() }
+                .matches { record -> record.value().productType in Products.values() }
         }
 
     }
