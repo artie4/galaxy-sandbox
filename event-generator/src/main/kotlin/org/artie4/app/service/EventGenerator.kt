@@ -4,6 +4,9 @@ import mu.KotlinLogging
 import org.artie4.app.model.Order
 import org.artie4.app.model.Products
 import org.artie4.app.properties.GeneratorProperties
+import org.springframework.amqp.core.Message
+import org.springframework.amqp.core.MessageProperties
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
 import reactor.kotlin.core.publisher.toFlux
 import java.util.concurrent.ThreadLocalRandom
@@ -15,8 +18,9 @@ private val logger = KotlinLogging.logger { }
 
 @Service
 class EventGenerator constructor(
+    private val generatorProperties: GeneratorProperties,
     private val kafkaProducer: KafkaProducer,
-    private val generatorProperties: GeneratorProperties
+    private val rabbitTemplate: RabbitTemplate
 ) {
 
     @PostConstruct
@@ -40,6 +44,7 @@ class EventGenerator constructor(
                 .peek {
                     logger.info { "[RequestGenerator.generate] send request ${it.id}" }
                     kafkaProducer.produce(it)
+                    rabbitTemplate.send("galaxy.orders", Message(it.toString().toByteArray(), MessageProperties()))
                 }
                 .toFlux().subscribe()
         } catch (ex: Exception) {
