@@ -2,8 +2,8 @@ package org.artie4.app.config
 
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.LongSerializer
-import org.artie4.app.model.Order
 import org.artie4.app.serdes.OrderSerializer
+import org.galaxy.model.Order
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.core.DefaultKafkaProducerFactory

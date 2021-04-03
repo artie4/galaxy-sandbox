@@ -1,5 +1,4 @@
-package org.artie4.app.model
-
+package org.galaxy.model
 
 data class Order(
     val id: Long = 0L,

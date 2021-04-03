@@ -3,7 +3,7 @@ package org.artie4.app.serdes
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.apache.kafka.common.serialization.Serializer
-import org.artie4.app.model.Order
+import org.galaxy.model.Order
 
 class OrderSerializer : Serializer<Order> {
 

@@ -37,6 +37,8 @@ dependencies {
     // kafka
     implementation("org.springframework.kafka:spring-kafka")
 
+    implementation(project(":galaxy-model"))
+
     // tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

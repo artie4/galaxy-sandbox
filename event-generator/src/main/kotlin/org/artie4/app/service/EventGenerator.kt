@@ -1,9 +1,9 @@
 package org.artie4.app.service
 
 import mu.KotlinLogging
-import org.artie4.app.model.Order
-import org.artie4.app.model.Products
 import org.artie4.app.properties.GeneratorProperties
+import org.galaxy.model.Order
+import org.galaxy.model.Products
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.core.MessageProperties
 import org.springframework.amqp.rabbit.core.RabbitTemplate

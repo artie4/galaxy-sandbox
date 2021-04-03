@@ -3,8 +3,8 @@ package org.artie4.app.config
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.LongDeserializer
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.artie4.app.model.Order
 import org.artie4.app.properties.KafkaConsumerProperties
+import org.galaxy.model.Order
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile

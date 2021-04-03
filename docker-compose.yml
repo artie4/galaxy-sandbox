@@ -39,7 +39,7 @@ services:
         - JAVA_OPTS=
           -Xms256m
           -Xmx320m
-        - EUREKA_SERVER=http://discovery:8769/eureka
+        - EUREKA_SERVER=http://127.0.0.1:8769/eureka
     network_mode: host
   event-generator:
       depends_on:
@@ -56,5 +56,5 @@ services:
         - JAVA_OPTS=
           -Xms256m
           -Xmx320m
-        - EUREKA_SERVER=http://discovery:8769/eureka
+        - EUREKA_SERVER=http://127.0.0.1:8769/eureka
       network_mode: host

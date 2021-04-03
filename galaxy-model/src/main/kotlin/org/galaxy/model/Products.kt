@@ -1,4 +1,4 @@
-package org.artie4.app.model
+package org.galaxy.model
 
 enum class Products {
     FOODSTUFF,

@@ -1,6 +1,5 @@
 package org.artie4.app.listener
 
-import org.artie4.app.model.Order
 import org.bouncycastle.util.Strings
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
