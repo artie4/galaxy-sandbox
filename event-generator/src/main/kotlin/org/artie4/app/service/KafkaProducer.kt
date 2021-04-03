@@ -2,7 +2,7 @@ package org.artie4.app.service
 
 import mu.KotlinLogging
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.artie4.app.model.Order
+import org.galaxy.model.Order
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 

@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.4.3"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.4.30"
-    kotlin("plugin.spring") version "1.4.30"
+    id("org.springframework.boot") version SpringBoot.VERSION
+    id("io.spring.dependency-management") version Spring.DEPENDENCY_MANAGEMENT_VERSION
+    kotlin("jvm") version Kotlin.VERSION
+    kotlin("plugin.spring") version Kotlin.VERSION
 }
 
 group = "org.artie4"
@@ -15,21 +15,25 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "2020.0.1"
-extra["testcontainersVersion"] = "1.15.1"
-
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    // starters
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    // tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.testcontainers:testcontainers-bom:${TestContainers.VERSION}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${SpringCloud.VERSION}")
     }
 }
 

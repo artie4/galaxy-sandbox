@@ -2,9 +2,9 @@ package org.artie4.app
 
 import org.artie4.app.client.EventConsumerClient
 import org.artie4.app.config.KafkaConfig
-import org.artie4.app.model.Order
-import org.artie4.app.model.Products
 import org.assertj.core.api.Assertions
+import org.galaxy.model.Order
+import org.galaxy.model.Products
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.amqp.rabbit.core.RabbitTemplate

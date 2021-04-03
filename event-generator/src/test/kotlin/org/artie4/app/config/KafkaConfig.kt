@@ -4,9 +4,9 @@ import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.LongDeserializer
 import org.apache.kafka.common.serialization.LongSerializer
-import org.artie4.app.model.Order
 import org.artie4.app.serdes.OrderDeserializer
 import org.artie4.app.serdes.OrderSerializer
+import org.galaxy.model.Order
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
