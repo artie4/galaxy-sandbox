@@ -1,0 +1,1 @@
+INSERT INTO PLANET (ID, NAME, SYSTEM) VALUES (1, 'Earth', 'Solar')
