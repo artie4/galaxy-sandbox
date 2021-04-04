@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 
 services:
   discovery:
@@ -22,13 +22,24 @@ services:
       - 5672:5672
       - 15672:15672
     volumes:
-      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - ./rabbitmq/data/:/var/lib/rabbitmq:rw
+      - ./rabbitmq/log/:/var/log/rabbitmq
+      - ./rabbitmq/definitions.json:/opt/definitions.json:ro
+      - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
     network_mode: host
+    mem_limit: 256m
+    mem_reservation: 64m
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
   event-consumer:
     depends_on:
-      - discovery
-      - rabbitmq
+      discovery:
+         condition: service_started
+      rabbitmq:
+        condition: service_healthy
     image: galaxy-sandbox/event-consumer:latest
     restart: on-failure
     ports:
@@ -43,8 +54,6 @@ services:
     network_mode: host
   event-generator:
       depends_on:
-        - discovery
-        - rabbitmq
         - event-consumer
       image: galaxy-sandbox/event-generator:latest
       restart: on-failure
