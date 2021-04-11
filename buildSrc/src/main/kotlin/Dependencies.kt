@@ -21,3 +21,9 @@ object TestContainers {
 object MicroUtilsKotlin {
     const val LOGGING_VERSION = "1.12.0"
 }
+
+object Database {
+    const val POSTGRESQL_JDBC_VERSION = "42.2.14"
+    const val POSTGRESQL_R2DBC_VERSION = "0.8.7.RELEASE"
+    const val FLYWAY_VERSION = "7.7.3"
+}

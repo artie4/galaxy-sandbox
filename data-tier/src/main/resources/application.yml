@@ -1,0 +1,32 @@
+server:
+  port: 8683
+  servlet:
+    context-path: /data-tier
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,env,beans,heapdump,threaddump"
+
+database:
+  vendor: postgresql
+  host: 127.0.0.1
+  port: 5432
+  name: galaxy_sandbox
+  username: postgres
+  password: postgres
+
+spring:
+  r2dbc:
+    url: r2dbc:${database.vendor}://${database.host}:${database.port}/${database.name}
+    username: ${database.username}
+    password: ${database.password}
+  jpa:
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:/db/migration
+    url: jdbc:${database.vendor}://${database.host}:${database.port}/${database.name}
+    user: ${database.username}
+    password: ${database.password}
