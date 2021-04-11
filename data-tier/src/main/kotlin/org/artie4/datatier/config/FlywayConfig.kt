@@ -1,4 +1,4 @@
-package org.artie4.datatier
+package org.artie4.datatier.config
 
 import org.flywaydb.core.Flyway
 import org.springframework.context.annotation.Bean
