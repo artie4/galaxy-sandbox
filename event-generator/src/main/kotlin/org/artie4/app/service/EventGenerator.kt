@@ -7,12 +7,9 @@ import org.galaxy.model.Products
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.core.MessageProperties
 import org.springframework.amqp.rabbit.core.RabbitTemplate
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import reactor.kotlin.core.publisher.toFlux
 import java.util.concurrent.ThreadLocalRandom
-import java.util.concurrent.TimeUnit
-import java.util.stream.Stream
-import javax.annotation.PostConstruct
 
 private val logger = KotlinLogging.logger { }
 
@@ -23,30 +20,17 @@ class EventGenerator constructor(
     private val rabbitTemplate: RabbitTemplate
 ) {
 
-    @PostConstruct
-    fun init() {
-        generate()
-    }
-
-    var counter = 0L
-
+    @Scheduled(fixedDelayString = "\${generator.delay-in-ms}")
     fun generate() {
+        if (counter >= generatorProperties.eventNumber) return
         logger.info("[RequestGenerator.generate] start generation")
         try {
-            Stream.generate({ randomCity() })
-                .limit(generatorProperties.eventNumber)
-                .map {
-                    TimeUnit.MILLISECONDS.sleep(generatorProperties.delayInMs)
-                    TimeUnit.MILLISECONDS.sleep(200)
-                    ++counter
-                    Order(counter, randomProduct(), randomAmount(), "city$it")
-                }
-                .peek {
-                    logger.info { "[RequestGenerator.generate] send request ${it.id}" }
-                    kafkaProducer.produce(it)
-                    rabbitTemplate.send("galaxy.orders", Message(it.toString().toByteArray(), MessageProperties()))
-                }
-                .toFlux().subscribe()
+            val randomCity = randomCity()
+            ++counter
+            val order = Order(counter, randomProduct(), randomAmount(), "city$randomCity")
+            logger.info { "[RequestGenerator.generate] send request ${order.id}" }
+            kafkaProducer.produce(order)
+            rabbitTemplate.send("galaxy.orders", Message(order.toString().toByteArray(), MessageProperties()))
         } catch (ex: Exception) {
             logger.error { ex.message }
         }
@@ -66,4 +50,8 @@ class EventGenerator constructor(
     }
 
     private fun randomAmount(): Int = ThreadLocalRandom.current().nextInt(10, 501)
+
+    companion object {
+        var counter = 0L
+    }
 }
