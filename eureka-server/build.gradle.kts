@@ -4,7 +4,7 @@ plugins {
     id("org.springframework.boot") version SpringBoot.VERSION
     id("io.spring.dependency-management") version Spring.DEPENDENCY_MANAGEMENT_VERSION
     kotlin("jvm") version Kotlin.VERSION
-    kotlin("plugin.spring") version Kotlin.VERSION
+    kotlin("plugin.spring") version 1.8.10
 }
 
 group = "org.artie4"
