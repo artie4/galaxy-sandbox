@@ -9,7 +9,7 @@ plugins {
 
 group = "org.artie4"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -37,7 +37,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core:${Database.FLYWAY_VERSION}")
 
     // logs
-    implementation("io.github.microutils:kotlin-logging:${MicroUtilsKotlin.LOGGING_VERSION}")
+    implementation("io.github.oshai:kotlin-logging-jvm:${MicroUtilsKotlin.LOGGING_VERSION}")
 
     implementation(project(":galaxy-model"))
 
@@ -63,7 +63,7 @@ dependencyManagement {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
