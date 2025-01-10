@@ -1,7 +1,7 @@
 package org.artie4.app.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.galaxy.model.Order
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service

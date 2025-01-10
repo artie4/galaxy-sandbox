@@ -1,6 +1,6 @@
 package org.artie4.app.service
 
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.artie4.app.properties.GeneratorProperties
 import org.galaxy.model.Order
 import org.galaxy.model.Products

@@ -1,6 +1,6 @@
 package org.artie4.app.service
 
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.galaxy.model.Order
 import org.springframework.kafka.core.KafkaTemplate
