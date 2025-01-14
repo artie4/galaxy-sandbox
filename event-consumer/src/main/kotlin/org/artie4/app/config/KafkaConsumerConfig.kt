@@ -28,7 +28,7 @@ class KafkaConsumerConfig(val consumerProperties: KafkaConsumerProperties) {
             ConcurrentKafkaListenerContainerFactory<Long, Order>()
         factory.consumerFactory = consumerFactory
         factory.isBatchListener = true
-        factory.setMessageConverter(BatchMessagingMessageConverter(stringJsonMessageConverter))
+        factory.setBatchMessageConverter(BatchMessagingMessageConverter(stringJsonMessageConverter))
         return factory
     }
 
@@ -37,7 +37,7 @@ class KafkaConsumerConfig(val consumerProperties: KafkaConsumerProperties) {
         ConcurrentKafkaListenerContainerFactory<Long, Order>().apply {
             this.consumerFactory = consumerFactory
             isBatchListener = false
-            setMessageConverter(StringJsonMessageConverter())
+            setRecordMessageConverter(StringJsonMessageConverter())
         }
 
     @Bean

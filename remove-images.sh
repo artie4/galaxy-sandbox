@@ -4,4 +4,4 @@ eureka_image=galaxy-sandbox/eureka-server
 generator_image=galaxy-sandbox/event-generator
 consumer_image=galaxy-sandbox/event-consumer
 
-docker rmi $eureka_image $generator_image $consumer_image
+podman rmi $eureka_image $generator_image $consumer_image
