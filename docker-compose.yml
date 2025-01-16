@@ -2,7 +2,7 @@ version: '2.2'
 
 services:
   discovery:
-    image: galaxy-sandbox/eureka-server:latest
+    image: localhost/galaxy-sandbox/eureka-server:latest
     restart: on-failure
     ports:
       - "8769:8769"
@@ -40,7 +40,7 @@ services:
          condition: service_started
       rabbitmq:
         condition: service_healthy
-    image: galaxy-sandbox/event-consumer:latest
+    image: localhost/galaxy-sandbox/event-consumer:latest
     restart: on-failure
     ports:
       - "8682:8682"
@@ -55,7 +55,7 @@ services:
   event-generator:
       depends_on:
         - event-consumer
-      image: galaxy-sandbox/event-generator:latest
+      image: localhost/galaxy-sandbox/event-generator:latest
       restart: on-failure
       ports:
         - "8681:8681"
@@ -67,3 +67,19 @@ services:
           -Xmx320m
         - EUREKA_SERVER=http://127.0.0.1:8769/eureka
       network_mode: host
+  data-tier:
+    depends_on:
+      discovery:
+        condition: service_started
+    image: localhost/galaxy-sandbox/data-tier:latest
+    restart: on-failure
+    ports:
+      - "8683:8683"
+    mem_limit: 380m
+    mem_reservation: 64m
+    environment:
+      - JAVA_OPTS=
+        -Xms256m
+        -Xmx320m
+      - EUREKA_SERVER=http://127.0.0.1:8769/eureka
+    network_mode: host
