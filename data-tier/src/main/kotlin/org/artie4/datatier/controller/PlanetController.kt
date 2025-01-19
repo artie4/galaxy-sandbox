@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 
-@RequestMapping("/api/planets")
+@RequestMapping("/api/v1/planets")
 @RestController
 class PlanetController(val planetRepository: PlanetRepository) {
 

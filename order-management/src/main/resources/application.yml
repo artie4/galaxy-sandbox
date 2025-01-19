@@ -1,0 +1,23 @@
+server:
+  port: 8684
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,env,beans,heapdump,threaddump"
+
+spring:
+  application:
+    name: order-management
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://127.0.0.1:8769/eureka/}
+    healthcheck:
+      enabled: true
