@@ -58,6 +58,7 @@ dependencyManagement {
     imports {
         mavenBom("org.testcontainers:testcontainers-bom:${TestContainers.VERSION}")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${SpringCloud.VERSION}")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${SpringBoot.VERSION}")
     }
 }
 

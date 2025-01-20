@@ -16,7 +16,7 @@
         <td th:text="${planet.name}"></td>
         <td th:text="${planet.system}"></td>
         <td>
-            <a th:href="@{/warehouse/{planet_id}(planet_id=${planet.id})}">Warehouse</a> |
+            <a th:href="@{/api/v1/warehouse/{planet_id}(planet_id=${planet.id})}">Warehouse</a> |
         </td>
     </tr>
 </table>

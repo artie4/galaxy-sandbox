@@ -3,6 +3,10 @@ server:
   servlet:
     context-path: /
 
+logging:
+  level:
+    org.springframework.web: DEBUG
+
 management:
   endpoints:
     web:
