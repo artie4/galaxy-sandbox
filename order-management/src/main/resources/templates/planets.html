@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Planets</title>
+</head>
+<body>
+<h1>Planets List</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>System</th>
+    </tr>
+    <tr th:each="planet : ${planets}">
+        <td th:text="${planet.id}"></td>
+        <td th:text="${planet.name}"></td>
+        <td th:text="${planet.system}"></td>
+        <td>
+            <a th:href="@{/api/v1/warehouse/{planet_id}(planet_id=${planet.id})}">Warehouse</a> |
+        </td>
+    </tr>
+</table>
+</body>
+</html>

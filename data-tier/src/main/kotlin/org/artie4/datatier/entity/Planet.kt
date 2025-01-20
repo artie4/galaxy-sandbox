@@ -9,5 +9,5 @@ class Planet(
     @Id
     val id: Int = 0,
     val name: String? = null,
-    val system: String? = null
+    val system: String? = null,
 )
