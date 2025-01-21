@@ -1,12 +1,16 @@
 package org.artie4.datatier.entity
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 
-@Table
-class Planet(
+
+@Entity
+data class Planet(
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0,
     val name: String? = null,
     val system: String? = null,
