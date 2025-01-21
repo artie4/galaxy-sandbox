@@ -7,12 +7,6 @@ management:
       exposure:
         include: "health,info,env,beans,heapdump,threaddump"
 
-logging:
-  level:
-    io.r2dbc: DEBUG
-    org.springframework.r2dbc: DEBUG
-    org.postgresql.r2dbc: DEBUG
-
 database:
   vendor: postgresql
   host: 127.0.0.1
@@ -24,8 +18,8 @@ database:
 spring:
   application:
     name: data-tier
-  r2dbc:
-    url: r2dbc:${database.vendor}://${database.host}:${database.port}/${database.name}
+  datasource:
+    url: jdbc:${database.vendor}://${database.host}:${database.port}/${database.name}
     username: ${database.username}
     password: ${database.password}
   jpa:

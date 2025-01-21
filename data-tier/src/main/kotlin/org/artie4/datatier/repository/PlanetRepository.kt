@@ -1,6 +1,6 @@
 package org.artie4.datatier.repository
 
 import org.artie4.datatier.entity.Planet
-import org.springframework.data.r2dbc.repository.R2dbcRepository
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface PlanetRepository : R2dbcRepository<Planet, Int>
+interface PlanetRepository : JpaRepository<Planet, Int>

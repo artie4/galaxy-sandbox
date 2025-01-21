@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @RequestMapping("/api/v1/planets")
 @RestController
@@ -19,9 +17,8 @@ class PlanetController(
 ) {
 
     @GetMapping
-    fun getPlanets(): Flux<Planet> {
-        return planetRepository.findAll()
-    }
+    fun getPlanets(): List<Planet> = planetRepository.findAll()
+
 
     @GetMapping("warehouse/{planet_id}")
     suspend fun getPlanetWarehouse(@PathVariable("planet_id") planetId: Int): WarehouseDto =

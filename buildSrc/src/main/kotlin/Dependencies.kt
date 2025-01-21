@@ -7,7 +7,7 @@ object SpringBoot {
 }
 
 object Spring {
-    const val DEPENDENCY_MANAGEMENT_VERSION = "1.1.0"
+    const val DEPENDENCY_MANAGEMENT_VERSION = "1.1.3"
 }
 
 object Kotlin {
@@ -24,6 +24,5 @@ object MicroUtilsKotlin {
 
 object Database {
     const val POSTGRESQL_JDBC_VERSION = "42.2.14"
-    const val POSTGRESQL_R2DBC_VERSION = "0.8.13.RELEASE"
     const val FLYWAY_VERSION = "7.7.3"
 }
