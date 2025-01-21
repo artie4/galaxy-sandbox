@@ -1,19 +1,14 @@
 package org.artie4.ordermanagement.config
 
-
-import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.reactive.function.client.WebClient
-
+import org.springframework.web.reactive.config.WebFluxConfigurer
+import org.springframework.web.reactive.config.ResourceHandlerRegistry
 
 @Configuration
-class WebConfig {
+class WebConfig : WebFluxConfigurer {
 
-    @Bean
-    fun dataTierWebClient(loadBalancerExchangeFilterFunction: ReactorLoadBalancerExchangeFilterFunction): WebClient =
-        WebClient.builder()
-            .filter(loadBalancerExchangeFilterFunction)
-            .baseUrl("http://data-tier")
-            .build()
+    override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
+        registry.addResourceHandler("/swagger-ui/**")
+            .addResourceLocations("classpath:/META-INF/resources/webjars/springdoc-openapi-webflux-ui/")
+    }
 }

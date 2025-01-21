@@ -26,3 +26,7 @@ object Database {
     const val POSTGRESQL_JDBC_VERSION = "42.2.14"
     const val FLYWAY_VERSION = "7.7.3"
 }
+
+object OpenApi {
+    const val VERSION = "2.2.0"
+}
