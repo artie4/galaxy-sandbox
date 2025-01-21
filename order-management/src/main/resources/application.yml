@@ -1,11 +1,10 @@
 server:
   port: 8684
-  servlet:
-    context-path: /
 
 logging:
   level:
     org.springframework.web: DEBUG
+    springdoc: DEBUG
 
 management:
   endpoints:
@@ -16,6 +15,13 @@ management:
 spring:
   application:
     name: order-management
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
 
 eureka:
   client:
