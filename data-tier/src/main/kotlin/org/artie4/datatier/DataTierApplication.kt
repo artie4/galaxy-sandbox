@@ -6,8 +6,8 @@ import org.springframework.web.reactive.config.EnableWebFlux
 
 @EnableWebFlux
 @SpringBootApplication
-class Application
+class DataTierApplication
 
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<DataTierApplication>(*args)
 }
