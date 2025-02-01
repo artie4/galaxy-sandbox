@@ -31,3 +31,8 @@ eureka:
       defaultZone: ${EUREKA_SERVER:http://127.0.0.1:8769/eureka/}
     healthcheck:
       enabled: true
+
+kafka:
+  producer:
+    broker: 127.0.0.1:9092
+    group-id: galaxy-sandbox
