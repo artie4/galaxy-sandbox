@@ -29,6 +29,9 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
+    // kafka
+    implementation("org.springframework.kafka:spring-kafka")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // openapi

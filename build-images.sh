@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-for module in 'eureka-server' 'event-consumer' 'event-generator' 'data-tier'
+for module in 'eureka-server' 'event-consumer' 'event-generator' 'data-tier' 'order-management'
 do
   echo ${module} &&
   gradle :${module}:build &&

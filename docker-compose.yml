@@ -83,3 +83,19 @@ services:
         -Xmx320m
       - EUREKA_SERVER=http://127.0.0.1:8769/eureka
     network_mode: host
+  order-management:
+    depends_on:
+      discovery:
+        condition: service_started
+    image: localhost/galaxy-sandbox/order-management:latest
+    restart: on-failure
+    ports:
+      - "8684:8684"
+    mem_limit: 380m
+    mem_reservation: 64m
+    environment:
+      - JAVA_OPTS=
+        -Xms256m
+        -Xmx320m
+      - EUREKA_SERVER=http://127.0.0.1:8769/eureka
+    network_mode: host

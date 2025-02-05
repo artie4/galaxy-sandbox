@@ -15,7 +15,7 @@ object Kotlin {
 }
 
 object TestContainers {
-    const val VERSION = "1.18.1"
+    const val VERSION = "1.20.1"
 }
 
 object MicroUtilsKotlin {
@@ -23,10 +23,26 @@ object MicroUtilsKotlin {
 }
 
 object Database {
-    const val POSTGRESQL_JDBC_VERSION = "42.2.14"
+    const val POSTGRESQL_JDBC_VERSION = "42.7.1"
     const val FLYWAY_VERSION = "7.7.3"
 }
 
 object OpenApi {
     const val VERSION = "2.2.0"
+}
+
+object Mapstruct {
+    const val VERSION = "1.5.5.Final"
+}
+
+object KtLint {
+    const val VERSION = "10.0.0"
+}
+
+object MockK {
+    const val VERSION = "1.13.7"
+}
+
+object Kotest {
+    const val VERSION = "5.6.2"
 }

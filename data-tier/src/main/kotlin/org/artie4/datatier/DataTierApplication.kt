@@ -1,10 +1,11 @@
 package org.artie4.datatier
 
+import org.artie4.datatier.config.properties.KafkaConsumerProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
-import org.springframework.web.reactive.config.EnableWebFlux
 
-@EnableWebFlux
+@EnableConfigurationProperties(value = [KafkaConsumerProperties::class])
 @SpringBootApplication
 class DataTierApplication
 
