@@ -19,6 +19,7 @@ class ReplenishmentService(
         return try {
             val send = kafkaTemplate.send(producerRecord)
             logger.info { "$producerRecord" }
+            send.join()
             send.isDone
         } catch (ex: Exception) {
             logger.error { "${ex.message} ${ex.suppressed}" }
