@@ -51,6 +51,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("io.mockk:mockk:${MockK.VERSION}")
+    testImplementation("io.kotest:kotest-runner-junit5:${Kotest.VERSION}")
+    testImplementation("io.kotest:kotest-assertions-core:${Kotest.VERSION}")
+    testImplementation("io.kotest:kotest-property:${Kotest.VERSION}")
 
 }
 
